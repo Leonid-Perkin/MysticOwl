@@ -8,10 +8,20 @@ const cardName = document.getElementById('card-name');
 const cardDesc = document.getElementById('card-desc');
 const fortuneBtn = document.getElementById('fortune-btn');
 const shareBtn = document.getElementById('share-btn');
-
 const owlLogo = document.querySelector('.owl-logo');
 
+const categoryButtons = document.querySelectorAll('.cat-btn');
+
 let currentCard = null;
+let selectedCategory = 'advice';
+
+categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        selectedCategory = button.getAttribute('data-category');
+    });
+});
 
 const user = tg.initDataUnsafe?.user;
 if (user && user.first_name) {
@@ -27,14 +37,15 @@ fortuneBtn.addEventListener('click', async () => {
 
     cardContainer.classList.remove('flip');
     cardContainer.innerHTML = `<div class="card-back">🔮</div>`;
-
     owlLogo.classList.add('owl-thinking');
 
     try {
-        const response = await fetch('/api/fortune');
+        const response = await fetch(`/api/fortune?category=${selectedCategory}`);
         if (!response.ok) throw new Error('Ошибка сети');
 
-        currentCard = await response.json();
+        const data = await response.json();
+        currentCard = data.card;
+        const currentDescription = data.description;
 
         await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -43,10 +54,9 @@ fortuneBtn.addEventListener('click', async () => {
         setTimeout(() => {
             cardContainer.innerHTML = `<img src="${currentCard.image}" alt="${currentCard.name}" class="card-img">`;
             cardName.innerText = currentCard.name;
-            cardDesc.innerText = currentCard.description;
+            cardDesc.innerText = currentDescription;
 
             predictionBox.classList.remove('hidden');
-
             owlLogo.classList.remove('owl-thinking');
 
             fortuneBtn.disabled = false;
@@ -56,15 +66,16 @@ fortuneBtn.addEventListener('click', async () => {
     } catch (error) {
         console.error(error);
         alert("Связь с совой прервалась.");
-
         owlLogo.classList.remove('owl-thinking');
-
         fortuneBtn.disabled = false;
-        fortuneBtn.innerText = "Получить расклад дня";
+        fortuneBtn.innerText = "Получить расклад";
     }
 });
 
 shareBtn.addEventListener('click', async () => {
+    const catNames = {'advice': 'Совет дня 🦉', 'love': 'Расклад на любовь ❤️', 'finance': 'Расклад на финансы 💰'};
+    const readableCategory = catNames[selectedCategory] || 'Расклад Таро';
+
     if (!currentCard || !user?.id) {
         alert("Не удалось определить пользователя или карту.");
         return;
@@ -80,7 +91,9 @@ shareBtn.addEventListener('click', async () => {
             body: JSON.stringify({
                 user_id: user.id,
                 card_name: currentCard.name,
-                card_description: currentCard.description
+                card_description: cardDesc.innerText,
+                category_name: readableCategory,
+                card_image_path: currentCard.image
             })
         });
 
@@ -88,11 +101,11 @@ shareBtn.addEventListener('click', async () => {
             shareBtn.innerText = "✅ Отправлено в чат!";
             setTimeout(() => { tg.close(); }, 1500);
         } else {
-            throw new Error('Ошибка сервера при отправке');
+            throw new Error('Ошибка сервера');
         }
     } catch (error) {
         console.error(error);
-        alert("Не удалось отправить сообщение. Убедитесь, что вы запустили бота.");
+        alert("Не удалось отправить сообщение.");
         shareBtn.disabled = false;
         shareBtn.innerText = "📥 Отправить результат в чат";
     }
