@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MysticOwl Tarot</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="/frontend/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="owl-logo">🦉</div>
+            <h1>MysticOwl</h1>
+            <p id="user-greeting" class="subtitle">Загрузка магии...</p>
+        </header>
+
+        <main class="card-zone">
+            <div id="card-container" class="card-container">
+                <div class="card-back">🔮</div>
+            </div>
+
+            <div id="prediction-box" class="prediction-box hidden">
+                <h2 id="card-name">Название карты</h2>
+                <p id="card-desc">Здесь будет толкование...</p>
+                <button id="share-btn" class="share-btn">📥 Отправить результат в чат</button>
+            </div>
+        </main>
+
+        <footer>
+            <button id="fortune-btn" class="main-btn">Получить расклад дня</button>
+        </footer>
+    </div>
+
+    <script src="/frontend/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0c1b 0%, #201335 50%, #0f0c1b 100%);
+    color: #f0ead6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 90vh;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin: 10px 0 5px 0;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.owl-logo {
+    font-size: 4rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #a892ee;
+    margin: 0;
+}
+
+.card-zone {
+    margin: 30px 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-container {
+    width: 160px;
+    height: 270px;
+    background: linear-gradient(45deg, #1a0f2e, #3d1c5a);
+    border: 3px solid #ffd700;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(168, 146, 238, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.6s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card-back {
+    font-size: 3rem;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.prediction-box {
+    margin-top: 20px;
+    background: rgba(25px, 15px, 45px, 0.7);
+    border: 1px solid #4a3475;
+    border-radius: 10px;
+    padding: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    backdrop-filter: blur(5px);
+}
+
+.prediction-box h2 {
+    color: #ffd700;
+    font-size: 1.3rem;
+    margin-top: 0;
+}
+
+.prediction-box p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #dddddd;
+}
+
+.hidden {
+    display: none;
+}
+
+.main-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #8a2be2, #4a0e4e);
+    color: #fff;
+    border: 2px solid #ffd700;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.main-btn:active {
+    transform: scale(0.98);
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.share-btn {
+    margin-top: 15px;
+    background: transparent;
+    color: #ffd700;
+    border: 1px dashed #ffd700;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.share-btn:active {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.owl-thinking {
+    animation: owlPulse 1.2s ease-in-out infinite !important;
+}
+
+@keyframes owlPulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(168, 146, 238, 0.4));
+    }
+    50% {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 25px #ffd700);
+    }
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(168, 146, 238, 0.4));
+    }
+}
