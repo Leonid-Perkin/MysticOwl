@@ -10,29 +10,60 @@
 <body>
 
     <div class="app-container">
+        <div class="main-tabs">
+            <button class="tab-btn active" data-tab="one-card-mode">👁️ Карта дня</button>
+            <button class="tab-btn" data-tab="three-cards-mode">🔮 Расклад дня (3 карты)</button>
+        </div>
+
         <header>
             <div class="owl-logo">🦉</div>
             <h1>MysticOwl</h1>
             <p id="user-greeting" class="subtitle">Загрузка магии...</p>
         </header>
 
-        <div class="category-selector">
-            <button class="cat-btn active" data-category="advice">🦉 Совет дня</button>
-            <button class="cat-btn" data-category="love">❤️ Любовь</button>
-            <button class="cat-btn" data-category="finance">💰 Финансы</button>
+        <div id="one-card-mode" class="mode-content">
+            <div class="category-selector">
+                <button class="cat-btn active" data-category="advice">🦉 Совет</button>
+                <button class="cat-btn" data-category="love">❤️ Любовь</button>
+                <button class="cat-btn" data-category="finance">💰 Финансы</button>
+            </div>
+
+            <main class="card-zone">
+                <div id="card-container" class="card-container">
+                    <div class="card-back">🔮</div>
+                </div>
+            </main>
         </div>
 
-        <main class="card-zone">
-            <div id="card-container" class="card-container">
-                <div class="card-back">🔮</div>
-            </div>
+        <div id="three-cards-mode" class="mode-content hidden">
+            <p class="mode-info">Узнайте, как прошлое влияет на ваше настоящее и что готовит будущее</p>
+            <main class="cards-row">
+                <div class="triple-card-wrapper">
+                    <span class="card-label">Прошлое</span>
+                    <div id="card3-1" class="card-container mini">
+                        <div class="card-back">📜</div>
+                    </div>
+                </div>
+                <div class="triple-card-wrapper">
+                    <span class="card-label">Настоящее</span>
+                    <div id="card3-2" class="card-container mini">
+                        <div class="card-back">🔮</div>
+                    </div>
+                </div>
+                <div class="triple-card-wrapper">
+                    <span class="card-label">Будущее</span>
+                    <div id="card3-3" class="card-container mini">
+                        <div class="card-back">✨</div>
+                    </div>
+                </div>
+            </main>
+        </div>
 
-            <div id="prediction-box" class="prediction-box hidden">
-                <h2 id="card-name">Название карты</h2>
-                <p id="card-desc">Здесь будет толкование...</p>
-                <button id="share-btn" class="share-btn">📥 Отправить результат в чат</button>
-            </div>
-        </main>
+        <div id="prediction-box" class="prediction-box hidden">
+            <h2 id="card-name">Название</h2>
+            <p id="card-desc">Толкование...</p>
+            <button id="share-btn" class="share-btn">📥 Отправить результат в чат</button>
+        </div>
 
         <footer>
             <button id="fortune-btn" class="main-btn">Получить расклад</button>
