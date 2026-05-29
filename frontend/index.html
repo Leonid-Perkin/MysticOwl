@@ -12,7 +12,8 @@
     <div class="app-container">
         <div class="main-tabs">
             <button class="tab-btn active" data-tab="one-card-mode">👁️ Карта дня</button>
-            <button class="tab-btn" data-tab="three-cards-mode">🔮 Расклад дня (3 карты)</button>
+            <button class="tab-btn" data-tab="three-cards-mode">🔮 Расклад дня</button>
+            <button class="tab-btn" data-tab="matrix-mode">🌌 Матрица Судьбы</button>
         </div>
 
         <header>
@@ -27,7 +28,6 @@
                 <button class="cat-btn" data-category="love">❤️ Любовь</button>
                 <button class="cat-btn" data-category="finance">💰 Финансы</button>
             </div>
-
             <main class="card-zone">
                 <div id="card-container" class="card-container">
                     <div class="card-back">🔮</div>
@@ -59,9 +59,16 @@
             </main>
         </div>
 
+        <div id="matrix-mode" class="mode-content hidden">
+            <p class="mode-info">Введите дату рождения, чтобы рассчитать персональный код вашей души по 22 Старшим Арканам</p>
+            <div class="matrix-form">
+                <input type="date" id="birth-date" class="matrix-input" required>
+            </div>
+        </div>
+
         <div id="prediction-box" class="prediction-box hidden">
             <h2 id="card-name">Название</h2>
-            <p id="card-desc">Толкование...</p>
+            <div id="card-desc">Толкование...</div>
             <button id="share-btn" class="share-btn">📥 Отправить результат в чат</button>
         </div>
 
